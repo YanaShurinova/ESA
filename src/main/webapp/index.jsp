@@ -5,8 +5,7 @@
     <title>JSP - Main</title>
 </head>
 <body>
-<h1><%= "Main page!" %>
-</h1>
+<h1>Main page!</h1>
 <br/>
 <a href="departments">All departments</a>
 <br/>

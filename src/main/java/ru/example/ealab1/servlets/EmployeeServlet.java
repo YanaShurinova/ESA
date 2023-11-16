@@ -1,4 +1,4 @@
-package ru.example.ealab1.employee;
+package ru.example.ealab1.servlets;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import ru.example.ealab1.services.EmployeeService;
 import ru.example.ealab1.models.dto.EmployeeRequest;
 import ru.example.ealab1.utils.ObjectMapperFactory;
 

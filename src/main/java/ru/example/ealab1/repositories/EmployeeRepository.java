@@ -1,4 +1,4 @@
-package ru.example.ealab1.employee;
+package ru.example.ealab1.repositories;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.ejb.Stateless;

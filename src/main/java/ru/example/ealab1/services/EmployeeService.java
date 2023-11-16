@@ -1,8 +1,8 @@
-package ru.example.ealab1.employee;
+package ru.example.ealab1.services;
 
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
+import ru.example.ealab1.repositories.EmployeeRepository;
 import ru.example.ealab1.models.EmployeeEntity;
 import ru.example.ealab1.models.dto.EmployeeRequest;
 

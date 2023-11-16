@@ -1,8 +1,8 @@
-package ru.example.ealab1.department;
+package ru.example.ealab1.services;
 
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
+import ru.example.ealab1.repositories.DepartmentRepository;
 import ru.example.ealab1.models.DepartmentEntity;
 import ru.example.ealab1.models.dto.DepartmentRequest;
 
