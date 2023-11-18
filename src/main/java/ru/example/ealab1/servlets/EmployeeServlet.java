@@ -38,7 +38,7 @@ public class EmployeeServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) {
         try (InputStream is = req.getInputStream()) {
-            EmployeeRequest employeeRequest = objectMapper.readValue(is, new TypeReference<>() {});
+            EmployeeRequest employeeRequest = objectMapper.readValue(is, EmployeeRequest.class);
             employeeService.create(employeeRequest);
         } catch (IOException e) {
             throw new RuntimeException(e);

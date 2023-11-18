@@ -39,7 +39,7 @@ public class DepartmentServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) {
         try (InputStream is = req.getInputStream()) {
-            DepartmentRequest departmentRequest = objectMapper.readValue(is, new TypeReference<>() {});
+            DepartmentRequest departmentRequest = objectMapper.readValue(is, DepartmentRequest.class);
             departmentService.create(departmentRequest);
         } catch (IOException e) {
             throw new RuntimeException(e);
