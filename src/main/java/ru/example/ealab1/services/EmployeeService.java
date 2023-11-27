@@ -22,7 +22,7 @@ public class EmployeeService {
     }
 
     public UUID create(EmployeeRequest employeeRequest) {
-        EmployeeEntity employee = new EmployeeEntity(randomUUID(), employeeRequest.getName(), employeeRequest.getAge());
+        EmployeeEntity employee = new EmployeeEntity(randomUUID(), employeeRequest.getName(), employeeRequest.getAge(), employeeRequest.getDepartmentId());
         employeeRepository.persist(employee);
         return employee.getId();
     }

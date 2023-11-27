@@ -1,6 +1,5 @@
 package ru.example.ealab1.servlets;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.inject.Inject;
 import jakarta.servlet.annotation.WebServlet;
