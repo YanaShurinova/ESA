@@ -26,4 +26,6 @@ public class EmployeeEntity {
     @Column(name = "age")
     private int age;
 
+    @Column(name="department_id")
+    private  UUID department_id;
 }

@@ -1,13 +1,13 @@
 package ru.example.ealab1.repositories;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.ejb.Stateless;
+import org.springframework.stereotype.Repository;
 import ru.example.ealab1.models.EmployeeEntity;
 
 import java.util.List;
 import java.util.UUID;
 
-@Stateless
+@Repository
 public class EmployeeRepository {
     @PersistenceContext
     private EntityManager em;

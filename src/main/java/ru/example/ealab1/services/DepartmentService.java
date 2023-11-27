@@ -1,7 +1,8 @@
 package ru.example.ealab1.services;
 
-import jakarta.ejb.Stateless;
-import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import ru.example.ealab1.repositories.DepartmentRepository;
 import ru.example.ealab1.models.DepartmentEntity;
 import ru.example.ealab1.models.dto.DepartmentRequest;
@@ -11,23 +12,25 @@ import java.util.UUID;
 
 import static java.util.UUID.randomUUID;
 
-@Stateless
+@Service
+@RequiredArgsConstructor
 public class DepartmentService {
 
-    @Inject
-    private DepartmentRepository departmentRepository;
+    private final DepartmentRepository departmentRepository;
 
 
     public List<DepartmentEntity> getAll() {
         return departmentRepository.findAll();
     }
 
+    @Transactional
     public UUID create(DepartmentRequest departmentRequest) {
         DepartmentEntity department = new DepartmentEntity(randomUUID(), departmentRequest.getName());
         departmentRepository.persist(department);
         return department.getId();
     }
 
+    @Transactional
     public void delete(UUID departmentId) {
         departmentRepository.delete(departmentId);
     }
