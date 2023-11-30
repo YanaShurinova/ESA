@@ -1,44 +1,34 @@
 package ru.example.ealab1.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import ru.example.ealab1.models.DepartmentEntity;
 import ru.example.ealab1.models.dto.DepartmentRequest;
 import ru.example.ealab1.services.DepartmentService;
 
+import java.util.List;
 import java.util.UUID;
 
-@Controller
+@RestController
+@RequestMapping(value = "/departments")
 @RequiredArgsConstructor
 public class DepartmentController {
-    private final ObjectMapper objectMapper;
 
     private final DepartmentService departmentService;
 
-    @GetMapping("/departments")
-    @SneakyThrows
-    public ResponseEntity<String> getAll() {
-        return new ResponseEntity<>(objectMapper.writeValueAsString(departmentService.getAll()), HttpStatus.OK);
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public List<DepartmentEntity> getAll() {
+        return departmentService.getAll();
     }
 
-    @PostMapping("/departments")
-    @SneakyThrows
-    public ResponseEntity <?> create(@RequestBody String departmentRequestString) {
-
-        DepartmentRequest departmentRequest = objectMapper.readValue(departmentRequestString,
-                DepartmentRequest.class);
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public void create(@RequestBody DepartmentRequest departmentRequest) {
         departmentService.create(departmentRequest);
-        return new ResponseEntity<>("", HttpStatus.OK);
     }
 
-    @DeleteMapping("/departments/{departmentIdString}")
-    public ResponseEntity <?> delete(@PathVariable String departmentIdString) {
-        UUID departmentId = UUID.fromString(departmentIdString);
+    @DeleteMapping("/{departmentId}")
+    public void delete(@PathVariable UUID departmentId) {
         departmentService.delete(departmentId);
-        return new ResponseEntity<>("", HttpStatus.OK);
     }
 }

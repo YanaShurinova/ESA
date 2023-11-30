@@ -12,7 +12,7 @@ public class EmployeeRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public List<EmployeeEntity> findAll() {
+    public List<EmployeeEntity> getAll() {
         return em.createQuery("select i from EmployeeEntity i", EmployeeEntity.class).getResultList();
     }
 

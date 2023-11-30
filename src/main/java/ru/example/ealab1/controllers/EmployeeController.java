@@ -1,45 +1,35 @@
 package ru.example.ealab1.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.SneakyThrows;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.MediaType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import ru.example.ealab1.models.EmployeeEntity;
 import ru.example.ealab1.models.dto.EmployeeRequest;
 import ru.example.ealab1.services.EmployeeService;
 
+import java.util.List;
 import java.util.UUID;
 
-@Controller
+@RestController
+@RequestMapping(value = "/employees")
 @RequiredArgsConstructor
 public class EmployeeController {
-    private final ObjectMapper objectMapper;
 
     private final EmployeeService employeeService;
 
-    @GetMapping("/employees")
-    @SneakyThrows
-    public ResponseEntity<String> getAll() {
-        return new ResponseEntity<>(objectMapper.writeValueAsString(employeeService.getAll()), HttpStatus.OK);
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public List<EmployeeEntity> getAll() {
+        return employeeService.getAll();
     }
 
-    @PostMapping("/employees")
-    @SneakyThrows
-    public ResponseEntity <?> create(@RequestBody String employeeRequestString) {
-
-        EmployeeRequest employeeRequest = objectMapper.readValue(employeeRequestString,
-                EmployeeRequest.class);
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public void create(@RequestBody EmployeeRequest employeeRequest) {
         employeeService.create(employeeRequest);
-        return new ResponseEntity<>("", HttpStatus.OK);
     }
 
-    @DeleteMapping("/employees/{employeeIdString}")
-    public ResponseEntity <?> delete(@PathVariable String employeeIdString) {
-        UUID employeeId = UUID.fromString(employeeIdString);
+    @DeleteMapping("/{employeeId}")
+    public void delete(@PathVariable UUID employeeId) {
         employeeService.delete(employeeId);
-        return new ResponseEntity<>("", HttpStatus.OK);
     }
 
 }

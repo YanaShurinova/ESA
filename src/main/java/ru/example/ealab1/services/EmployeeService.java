@@ -19,7 +19,7 @@ public class EmployeeService {
     private final EmployeeRepository employeeRepository;
 
     public List<EmployeeEntity> getAll() {
-        return employeeRepository.findAll();
+        return employeeRepository.getAll();
     }
 
     @Transactional

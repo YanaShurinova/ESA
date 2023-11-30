@@ -12,7 +12,7 @@ public class DepartmentRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public List<DepartmentEntity> findAll() {
+    public List<DepartmentEntity> getAll() {
         return em.createQuery("select i from DepartmentEntity i", DepartmentEntity.class).getResultList();
     }
 

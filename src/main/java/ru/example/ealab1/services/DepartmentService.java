@@ -20,7 +20,7 @@ public class DepartmentService {
 
 
     public List<DepartmentEntity> getAll() {
-        return departmentRepository.findAll();
+        return departmentRepository.getAll();
     }
 
     @Transactional
