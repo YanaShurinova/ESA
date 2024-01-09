@@ -20,8 +20,9 @@ public class DepartmentRepository {
         em.persist(entity);
     }
 
-    public void delete(UUID departmentId) {
+    public DepartmentEntity delete(UUID departmentId) {
         DepartmentEntity entity = em.find(DepartmentEntity.class, departmentId);
         em.remove(entity);
+        return entity;
     }
 }

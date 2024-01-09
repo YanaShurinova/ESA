@@ -22,3 +22,22 @@ spring:
       ddl-auto: validate
     properties:
       hibernate.default_schema: test
+  artemis:
+    user:  artemis
+    password:  artemis
+  mail:
+    host: ${SMTP_HOST:smtp.gmail.com}
+    port: ${SMTP_PORT:587}
+    username: jetgrdr@gmail.com
+    password: MTw2avYn
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            required: true
+  jms:
+    pub-sub-domain: true
+application:
+  topic:
+    audit: audit_queue

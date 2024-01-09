@@ -3,9 +3,11 @@ package ru.example.ealab1.services;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.example.ealab1.models.AuditEvent;
 import ru.example.ealab1.repositories.DepartmentRepository;
 import ru.example.ealab1.models.DepartmentEntity;
 import ru.example.ealab1.models.dto.DepartmentRequest;
+import ru.example.ealab1.utils.EventLogger;
 
 import java.util.List;
 import java.util.UUID;
@@ -16,6 +18,7 @@ import static java.util.UUID.randomUUID;
 @RequiredArgsConstructor
 public class DepartmentService {
 
+    private final EventLogger eventLogger;
     private final DepartmentRepository departmentRepository;
 
 
@@ -32,7 +35,8 @@ public class DepartmentService {
 
     @Transactional
     public void delete(UUID departmentId) {
-        departmentRepository.delete(departmentId);
+        DepartmentEntity deleted = departmentRepository.delete(departmentId);
+        eventLogger.log(deleted, AuditEvent.DELETE);
     }
 
 }
